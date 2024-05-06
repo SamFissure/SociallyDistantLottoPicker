@@ -34,6 +34,7 @@ def addToDistance(n):
 
 def checkSocialDistance():
     isNotDone=True
+    #isNotDone allows for re-picking the number, isInLoop controls distance checking
     while (isNotDone==True):
         choose= random.randint(1,69)
         print("Prospective number, testing for social distance from other numbers", choose)
@@ -42,10 +43,14 @@ def checkSocialDistance():
         i=0
         isInLoop=True
         while(isInLoop):
+            #check if chosen number is between the lower and upper bound set by a previous ball chosen
             if ((Distance[i]<=choose) and (choose<=Distance[i+1])):
+                #leave loop
                 isInLoop=False
                 print("Number failed to social distance")
             elif(i==(len(Distance)-2)):
+                #IF we are at the end of the list AND we haven't rejected the ball
+                #THEN we can add it to the list of balls, add a new bound, and exit the loop
                 addToChosen(choose)
                 addToDistance(choose)
                 isNotDone=False
@@ -58,4 +63,3 @@ def checkSocialDistance():
 
 if __name__=="__main__":
     main()
-
